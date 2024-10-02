@@ -1,5 +1,6 @@
 package com.miracakkoyun.landmarkbook;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -22,7 +23,14 @@ public class DetailsActivity extends AppCompatActivity {
         binding = ActivityDetailsBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+        Intent intent=getIntent();
 
+        //Casting
+        Landmark selectedLandmark=(Landmark) intent.getSerializableExtra("landmark");
+
+        binding.nameText1.setText(selectedLandmark.name);
+        binding.nameText2.setText(selectedLandmark.country);
+        binding.imageView.setImageResource(selectedLandmark.image);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
